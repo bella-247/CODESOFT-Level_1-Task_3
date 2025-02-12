@@ -1,0 +1,102 @@
+$calc-color : black;
+$box-shadow-color : #999;
+$display-box-shadow : #333;
+
+*{
+    margin: 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #ddd;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.calc-container{
+    position: relative;
+    outline: 0.15rem solid #444;
+    background-color: $calc-color;
+    box-shadow: 0.25rem 0.5rem 2rem $calc-color;     
+    width: 350px;
+    padding: 2.5rem 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    .message-box{
+        position: absolute;
+        top: 0;
+        left: 50%;
+        translate: -50%;
+        padding: 0.75rem;
+        color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .display-container{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        height: 100px;
+        background: white;
+        border-radius: 1rem;
+        input{
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+            text-align: right;
+            font-size: 3rem;
+            padding: 1rem;
+            box-shadow: inset 0.15rem 0.15rem 0.5rem $display-box-shadow,
+                        inset -0.15rem -0.15rem 0.5rem $display-box-shadow;
+            &:disabled{
+                background-color: white;
+                color: black;
+            }
+        }
+    }
+    .btns-container{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        resize: horizontal;
+        .btns{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 1rem;
+            font-size: 1.25rem;
+            font-family: sans-serif;
+            font-weight: bolder;
+            user-select: none;
+            cursor: default;
+            box-shadow: 0px 0px 0.5rem $box-shadow-color;
+            transition: box-shadow 150ms;
+            &:active{
+                $size : 1px;
+                box-shadow: inset $size $size 0.25rem $box-shadow-color,
+                            inset $size $size 0.25rem $box-shadow-color;
+            }
+            &.clear{
+                background: red;
+            }
+            &.del{
+                background: #666;
+            }
+            &.equal{
+                background: blue;
+                grid-column: span 2;
+            }
+        }
+    }
+}
